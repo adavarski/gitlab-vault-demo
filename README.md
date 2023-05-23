@@ -1,4 +1,14 @@
 
+# Requirements
+
+- Write and build a simple docker container able to make calls to vault server and parses the following
+values: AWS_KEY, AWS_PASS, SAT_ID, ENCR_KEY. Values are located in vault KV secrete engine with path: local/esdata.
+We should be able to run the container with arguments from shell and returned result to be requested
+value. We should be able to get all values at once or values one by one.
+
+- Use this container in the Gitlab CI pipeline with stages: build -> push -> get credentials values from Vault -> Passing credential to another stage.
+Note: Send credential to another stage in the same ci pipeline is done via GitLab artifacts. Explanation: The environment variables created during jobs are lost when the job finished, so I would recommend saving our variables to files that can be collected by the GitLab Runner via the artifacts .gitlab-ci.yml attribute. The artifacts from all jobs will then be available to the job(s) in our next stage(s).
+
 # Prepare on-prem infrastructure 
 
 Note: We will use 1 servers for this demo:
@@ -90,33 +100,33 @@ GitLab repo:
 
 <img src="./screenshots/gitlab-vault-demo-repo.png?raw=true" width="900">
 
-GitLab CI/CD pipilene variables (VAULT_ADDR=https://192.168.1.99:8200 & VAULT_TOKEN=hvs.mSX4zcy6M7suKKnnSguIg5j6)
+GitLab CI/CD pipilene variables (VAULT_ADDR=https://192.168.1.99:8200 & VAULT_TOKEN=hvs.mSX4zcy6M7suKKnnSguIg5j6):
 
 <img src="./screenshots/gitlab-vault-demo-pipeline-variables.png?raw=true" width="900">
 
-GitLab CI/CD pipilene 
+GitLab CI/CD pipilene passed:
 
 <img src="./screenshots/gitlab-vault-demo-pipeline.png?raw=true" width="900">
 
-GitLab CI/CD pipeline stage: build docker image
+GitLab CI/CD pipeline stage: build docker image:
 
 <img src="./screenshots/gitlab-vault-demo-pipeline-build.png?raw=true" width="900">
 
-GitLab CI/CD pipeline stage: push docker image to GitLab registry
+GitLab CI/CD pipeline stage: push docker image to GitLab registry:
 
 <img src="./screenshots/gitlab-vault-demo-pipeline-push.png?raw=true" width="900">
 
-GitLab CI/CD pipeline stage: get Vault secrets
+GitLab CI/CD pipeline stage: get Vault secrets:
 
 <img src="./screenshots/gitlab-vault-demo-pipeline-get-credentials.png?raw=true" width="900">
 
-GitLab CI/CD pipeline stage: passing credential to another stage
+GitLab CI/CD pipeline stage: passing credential to another stage:
 
 <img src="./screenshots/gitlab-vault-demo-pipeline-pass-credentials-to-ononter-stage.png?raw=true" width="900">
 
 Note: 
 
-The environment variables created during jobs are lost when the job finished, so I would recommend saving our variables to files that can be collected by the GitLab Runner via the artifacts .gitlab-ci.yml attribute. The artifacts from all jobs will then be available to the job(s) in our next stage(s).
+
 
 
 
