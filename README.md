@@ -1,21 +1,21 @@
 # Requirements
 
 - `Docker`: Write and build a simple docker container able to make calls to vault server and parses the following
-values: AWS_KEY, AWS_PASS, SAT_ID, ENCR_KEY. Values are located in vault KV secrete engine with path: local/esdata.
+values: AWS_KEY, AWS_PASS, SAT_ID, ENCR_KEY. Values are located in Vault KV secrete engine with path: local/esdata.
 We should be able to run the container with arguments from shell and returned result to be requested
 value. We should be able to get all values at once or values one by one.
 
-- `GitLab CI/CD pipeline`: Use this container in the Gitlab CI pipeline with stages: build -> push -> get credentials values from Vault -> Passing credential to another stage.
+- `GitLab CI/CD pipeline`: Use this container in the Gitlab CI pipeline with pipeline stages: Build docker image -> Push docker image to GitLab Docker Registry-> Get credentials values from Vault -> Passing credential values to another stage.
 
 Note: Send credential to another stage in the same ci pipeline is done via GitLab artifacts. Explanation: The environment variables created during jobs are lost when the job finished, so I would recommend saving our variables to files that can be collected by the GitLab Runner via the artifacts .gitlab-ci.yml attribute. The artifacts from all jobs will then be available to the job(s) in our next stage(s).
 
 ## Prepare on-prem infrastructure 
 
-Note: We will use 1 servers for this demo:
+Note: We will use 1 servers for this demo.
 
 - devops  : 192.168.1.99
 
-Install/setup/configure GitLab & HashiCorp Vault on this server.
+## Install/setup/configure GitLab & HashiCorp Vault on this server.
 
 ### Gitlab server install via ansible 
 
@@ -70,16 +70,12 @@ $ vault secrets list -detailed
 $ docker build -t vault-get .
 $ docker run --rm  --name=dev-vault vault-get -c "/get.sh AWS_KEY"
 AKIAIOSFODNN7EXAMPLE
-
 $ docker run --rm  --name=dev-vault vault-get -c "/get.sh AWS_PASS"
 wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-
 $ docker run --rm  --name=dev-vault vault-get -c "/get.sh ENCR_KEY"
 qwerty123d
-
 $ docker run --rm  --name=dev-vault vault-get -c "/get.sh SAT_ID"
 22
-
 $ docker run --rm  --name=dev-vault vault-get -c "/get.sh ALL"
 AKIAIOSFODNN7EXAMPLE
 wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
@@ -88,11 +84,11 @@ qwerty123
 
 ```
 
-### Create Gitlab project and push vault-demo-gitlab-repo folder to GitLab repo
+## Create Gitlab project and push vault-demo-gitlab-repo folder to GitLab a new repo
 
-### setup Gitlab CI/CD pipeline variables and create [.gitlab-ci.yml](./vault-demo-gitlab-repo/.gitlab-ci.yml) file.
+### Setup Gitlab CI/CD pipeline variables and create [.gitlab-ci.yml](./vault-demo-gitlab-repo/.gitlab-ci.yml) file.
 
-Screenshots: 
+### Screenshots: 
 
 GitLab repo:
 
@@ -122,7 +118,6 @@ GitLab CI/CD pipeline stage: passing credential to another stage:
 
 <img src="./screenshots/gitlab-vault-demo-pipeline-pass-credentials-to-ononter-stage.png?raw=true" width="900">
 
-Note: 
 
 
 
