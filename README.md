@@ -49,9 +49,9 @@ Initial Root Token: hvs.mSX4zcy6M7suKKnnSguIg5j6
 $ vault operator unseal
 $ vault operator unseal
 $ vault operator unseal
-$ vault login
 
 ### Create secrets
+$ vault login
 $ vault secrets enable -path=local kv
 Success! Enabled the kv secrets engine at: local/
 $ vault write local/esdata AWS_KEY="AKIAIOSFODNN7EXAMPLE" AWS_PASS="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" SAT_ID="22" ENCR_KEY="qwerty123"
