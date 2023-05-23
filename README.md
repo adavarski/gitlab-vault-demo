@@ -91,7 +91,9 @@ GitLab repo:
 
 <img src="./screenshots/gitlab-vault-demo-repo.png?raw=true" width="900">
 
-GitLab CI/CD pipilene variables (VAULT_ADDR=https://192.168.1.99:8200 & VAULT_TOKEN=hvs.mSX4zcy6M7suKKnnSguIg5j6):
+GitLab CI/CD pipilene variables: 
+- VAULT_ADDR=https://192.168.1.99:8200 
+- VAULT_TOKEN=hvs.mSX4zcy6M7suKKnnSguIg5j6):
 
 <img src="./screenshots/gitlab-vault-demo-pipeline-variables.png?raw=true" width="900">
 
