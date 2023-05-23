@@ -9,9 +9,9 @@ value. We should be able to get all values at once or values one by one.
 
 Note: Send credential to another stage in the same ci pipeline is done via GitLab artifacts. Explanation: The environment variables created during jobs are lost when the job finished, so I would recommend saving our variables to files that can be collected by the GitLab Runner via the artifacts .gitlab-ci.yml attribute. The artifacts from all jobs will then be available to the job(s) in our next stage(s).
 
-## Prepare on-prem infrastructure (devops server IP: 192.168.1.99)
+## Prepare on-prem infrastructure 
 
-## Install/setup/configure GitLab & HashiCorp Vault.
+## Install/setup/configure GitLab & HashiCorp Vault on a Linux server.
 
 ### Gitlab server install via ansible 
 
@@ -59,7 +59,7 @@ Success! Data written to: local/esdata
 $ vault secrets list -detailed
 ```
 
-## Manual create Docker image and test it 
+## Manual create simple docker container and test it 
 
 ```
 ### Build & Test docker container
@@ -79,7 +79,7 @@ qwerty123
 22
 ```
 
-## Create GitLab pipeline 
+## Create GitLab CI/CD pipeline 
 
 ### Create Gitlab project and push [vault-demo-gitlab-repo](./vault-demo-gitlab-repo) folder to GitLab a new repo
 
@@ -101,19 +101,19 @@ GitLab CI/CD pipilene passed:
 
 <img src="./screenshots/gitlab-vault-demo-pipeline.png?raw=true" width="900">
 
-GitLab CI/CD pipeline stage: build docker image:
+GitLab CI/CD pipeline stage -> build docker image:
 
 <img src="./screenshots/gitlab-vault-demo-pipeline-build.png?raw=true" width="900">
 
-GitLab CI/CD pipeline stage: push docker image to GitLab docker registry:
+GitLab CI/CD pipeline stage -> push docker image to GitLab docker registry:
 
 <img src="./screenshots/gitlab-vault-demo-pipeline-push.png?raw=true" width="900">
 
-GitLab CI/CD pipeline stage: get Vault secrets:
+GitLab CI/CD pipeline stage -> get secrets form Vault:
 
 <img src="./screenshots/gitlab-vault-demo-pipeline-get-credentials.png?raw=true" width="900">
 
-GitLab CI/CD pipeline stage: passing credential to another stage:
+GitLab CI/CD pipeline stage -> passing credential to another stage:
 
 <img src="./screenshots/gitlab-vault-demo-pipeline-pass-credentials-to-ononter-stage.png?raw=true" width="900">
 
