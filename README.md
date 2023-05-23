@@ -7,6 +7,7 @@ We should be able to run the container with arguments from shell and returned re
 value. We should be able to get all values at once or values one by one.
 
 - `GitLab CI/CD pipeline`: Use this container in the Gitlab CI pipeline with stages: build -> push -> get credentials values from Vault -> Passing credential to another stage.
+
 Note: Send credential to another stage in the same ci pipeline is done via GitLab artifacts. Explanation: The environment variables created during jobs are lost when the job finished, so I would recommend saving our variables to files that can be collected by the GitLab Runner via the artifacts .gitlab-ci.yml attribute. The artifacts from all jobs will then be available to the job(s) in our next stage(s).
 
 # Prepare on-prem infrastructure 
