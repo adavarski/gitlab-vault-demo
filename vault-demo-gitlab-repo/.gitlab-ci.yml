@@ -1,0 +1,49 @@
+stages:
+  - build
+  - push
+  - get_all_credentials
+  - test
+
+build_image:
+  stage: build
+  script:
+     - docker build -t $CI_REGISTRY_IMAGE:latest .
+
+push_image:
+  stage: push
+  script:
+    - echo "$CI_REGISTRY"
+    - echo "$CI_REGISTRY_USER"
+    - echo "$CI_REGISTRY_PASSWORD"
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:latest
+
+get_all_credentials:
+  stage: get_all_credentials
+  image: $CI_REGISTRY_IMAGE:latest
+  script:
+    - export VAULT_ADDR="$VAULT_ADDR"
+    - export VAULT_TOKEN="$VAULT_TOKEN"
+    - echo "All credentials:"
+    - /get.sh ALL
+    - mkdir output
+    - /get.sh AWS_KEY > output/AWS_KEY
+    - /get.sh AWS_PASS > output/AWS_PASS
+    - /get.sh ENCR_KEY > output/ENCR_KEY
+    - /get.sh SAT_ID > output/SAT_ID
+  artifacts:
+    paths: [output/]
+
+passing_credential_to_another_stage:
+  stage: test
+  script:
+    - echo "OUTPUT from get_all_credentials stage"
+    - echo "AWS_KEY value:"
+    - cat output/AWS_KEY
+    - echo "AWS_PASS value:"
+    - cat output/AWS_PASS
+    - echo "ENCR_KEY value:"
+    - cat output/ENCR_KEY
+    - echo "SAT_ID value:"
+    - cat output/SAT_ID
+
