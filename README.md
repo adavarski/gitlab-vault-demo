@@ -1,9 +1,9 @@
 
 # Prepare on-prem infrastructure 
 
-Note: We will use 3 servers for this demo:
+Note: We will use 1 servers for this demo:
 
-- devops (gitlab & vault servers) : 192.168.1.99
+- devops (gitlab & vault servers installed) : 192.168.1.99
 
 
 ## Gitlab server install via ansible 
