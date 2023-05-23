@@ -83,7 +83,7 @@ qwerty123
 
 ### Create Gitlab project and push [vault-demo-gitlab-repo](./vault-demo-gitlab-repo) folder to GitLab a new repo
 
-### Setup Gitlab CI/CD pipeline variables and create [.gitlab-ci.yml](./vault-demo-gitlab-repo/.gitlab-ci.yml) file.
+### Setup Gitlab CI/CD pipeline variables used by [.gitlab-ci.yml](./vault-demo-gitlab-repo/.gitlab-ci.yml) file.
 
 ### Screenshots: 
 
