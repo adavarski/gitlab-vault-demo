@@ -1,12 +1,12 @@
 
 # Requirements
 
-- Write and build a simple docker container able to make calls to vault server and parses the following
+- Docker: Write and build a simple docker container able to make calls to vault server and parses the following
 values: AWS_KEY, AWS_PASS, SAT_ID, ENCR_KEY. Values are located in vault KV secrete engine with path: local/esdata.
 We should be able to run the container with arguments from shell and returned result to be requested
 value. We should be able to get all values at once or values one by one.
 
-- Use this container in the Gitlab CI pipeline with stages: build -> push -> get credentials values from Vault -> Passing credential to another stage.
+- GitLab CI/CD pipeline: Use this container in the Gitlab CI pipeline with stages: build -> push -> get credentials values from Vault -> Passing credential to another stage.
 Note: Send credential to another stage in the same ci pipeline is done via GitLab artifacts. Explanation: The environment variables created during jobs are lost when the job finished, so I would recommend saving our variables to files that can be collected by the GitLab Runner via the artifacts .gitlab-ci.yml attribute. The artifacts from all jobs will then be available to the job(s) in our next stage(s).
 
 # Prepare on-prem infrastructure 
