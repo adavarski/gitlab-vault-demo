@@ -80,10 +80,43 @@ qwerty123
 
 ```
 
-### Create Gitlab project and push vault-demo folder to GitLab repo, setup Gitlab CI/CD pipeline variables and create .gitlab-ci.yml file.
+### Create Gitlab project and push vault-demo-gitlab-repo folder to GitLab repo
 
+### setup Gitlab CI/CD pipeline variables and create .gitlab-ci.yml file.
 
+Screenshots: 
 
+GitLab repo:
+
+<img src="./screenshots/gitlab-vault-demo-repo.png?raw=true" width="900">
+
+GitLab CI/CD pipilene variables (VAULT_ADDR=https://192.168.1.99:8200 & VAULT_TOKEN=hvs.mSX4zcy6M7suKKnnSguIg5j6)
+
+<img src="./screenshots/gitlab-vault-demo-pipeline-variables.png?raw=true" width="900">
+
+GitLab CI/CD pipilene 
+
+<img src="./screenshots/gitlab-vault-demo-pipeline.png?raw=true" width="900">
+
+GitLab CI/CD pipeline stage: build docker image
+
+<img src="./screenshots/gitlab-vault-demo-pipeline-build.png?raw=true" width="900">
+
+GitLab CI/CD pipeline stage: push docker image to GitLab registry
+
+<img src="./screenshots/gitlab-vault-demo-pipeline-push.png?raw=true" width="900">
+
+GitLab CI/CD pipeline stage: get Vault secrets
+
+<img src="./screenshots/gitlab-vault-demo-pipeline-get-credentials.png?raw=true" width="900">
+
+GitLab CI/CD pipeline stage: passing credential to another stage
+
+<img src="./screenshots/gitlab-vault-demo-pipeline-pass-credentials-to-ononter-stage.png?raw=true" width="900">
+
+Note: 
+
+The environment variables created during jobs are lost when the job finished, so I would recommend saving our variables to files that can be collected by the GitLab Runner via the artifacts .gitlab-ci.yml attribute. The artifacts from all jobs will then be available to the job(s) in our next stage(s).
 
 
 
