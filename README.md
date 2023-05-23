@@ -10,14 +10,15 @@ value. We should be able to get all values at once or values one by one.
 
 Note: Send credential to another stage in the same ci pipeline is done via GitLab artifacts. Explanation: The environment variables created during jobs are lost when the job finished, so I would recommend saving our variables to files that can be collected by the GitLab Runner via the artifacts .gitlab-ci.yml attribute. The artifacts from all jobs will then be available to the job(s) in our next stage(s).
 
-# Prepare on-prem infrastructure 
+## Prepare on-prem infrastructure 
 
 Note: We will use 1 servers for this demo:
 
-- devops (gitlab & vault servers installed) : 192.168.1.99
+- devops  : 192.168.1.99
 
+Install/setup/configure GitLab & HashiCorp Vault on this server.
 
-## Gitlab server install via ansible 
+### Gitlab server install via ansible 
 
 ```
 $ cd gitlab-ansible
@@ -33,8 +34,9 @@ $ ansible-playbook -i ./inventory.ini gitlab.yml
 # systemctl restart gitlab-runner  
 ```   
 
-## Install vault server (ubuntu)
+### Install/Setup Vault server & Unseal Vault & Create secrets.
 ```
+### Install/Setup Vault server
 # curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 # apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com focal main"
 # apt-get update && apt-get install vault
@@ -47,14 +49,14 @@ Unseal Key 4: SRTc/JCxVZ9M9jYwTOrAHhbM6ehHtpQ9WU8/rITfemXI
 Unseal Key 5: B24sVrIpnaea2FJEB4NISisNtTYUYoi1S5MFJpmL5W0W
 
 Initial Root Token: hvs.mSX4zcy6M7suKKnnSguIg5j6
-```
-## Unseal Vault and setup secrets
-```
+
+### Unseal Vault
 $ vault operator unseal
 $ vault operator unseal
 $ vault operator unseal
 $ vault login
 
+### Create secrets
 $ vault secrets enable -path=local kv
 Success! Enabled the kv secrets engine at: local/
 $ vault write local/esdata AWS_KEY="AKIAIOSFODNN7EXAMPLE" AWS_PASS="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" SAT_ID="22" ENCR_KEY="qwerty123"
@@ -63,10 +65,6 @@ $ vault secrets list -detailed
 ```
 
 ## Manual create Docker image and test it 
-
-Build a simple docker container able to make calls to vault server and parses the following values: {AWS_KEY, AWS_PASS, ENCR_KEY, SAT_ID} and test container.
-Values are located in vault KV secrete engine with path: local/esdata. We should be able to run the container with arguments from shell and returned result to be requested.
-value.
 
 ```
 ### Build & Test docker container example
