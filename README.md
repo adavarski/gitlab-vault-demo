@@ -101,7 +101,7 @@ GitLab CI/CD pipeline stage: build docker image:
 
 <img src="./screenshots/gitlab-vault-demo-pipeline-build.png?raw=true" width="900">
 
-GitLab CI/CD pipeline stage: push docker image to GitLab registry:
+GitLab CI/CD pipeline stage: push docker image to GitLab docker registry:
 
 <img src="./screenshots/gitlab-vault-demo-pipeline-push.png?raw=true" width="900">
 
