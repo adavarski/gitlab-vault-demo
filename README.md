@@ -1,4 +1,3 @@
-
 # Requirements
 
 - `Docker`: Write and build a simple docker container able to make calls to vault server and parses the following
@@ -91,7 +90,7 @@ qwerty123
 
 ### Create Gitlab project and push vault-demo-gitlab-repo folder to GitLab repo
 
-### setup Gitlab CI/CD pipeline variables and create .gitlab-ci.yml file.
+### setup Gitlab CI/CD pipeline variables and create [.gitlab-ci.yml`](./vault-demo-gitlab-repo/.gitlab-ci.yml) file.
 
 Screenshots: 
 
