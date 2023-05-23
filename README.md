@@ -11,11 +11,7 @@ Note: Send credential to another stage in the same ci pipeline is done via GitLa
 
 ## Prepare on-prem infrastructure 
 
-Note: We will use 1 servers for this demo.
-
-- devops  : 192.168.1.99
-
-## Install/setup/configure GitLab & HashiCorp Vault on this server.
+## Install/setup/configure GitLab & HashiCorp Vault.
 
 ### Gitlab server install via ansible 
 
@@ -66,7 +62,7 @@ $ vault secrets list -detailed
 ## Manual create Docker image and test it 
 
 ```
-### Build & Test docker container example
+### Build & Test docker container
 $ docker build -t vault-get .
 $ docker run --rm  --name=dev-vault vault-get -c "/get.sh AWS_KEY"
 AKIAIOSFODNN7EXAMPLE
@@ -81,7 +77,6 @@ AKIAIOSFODNN7EXAMPLE
 wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 qwerty123
 22
-
 ```
 
 ## Create Gitlab project and push vault-demo-gitlab-repo folder to GitLab a new repo
