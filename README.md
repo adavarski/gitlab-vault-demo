@@ -45,7 +45,7 @@ Unseal Key 5: B24sVrIpnaea2FJEB4NISisNtTYUYoi1S5MFJpmL5W0W
 
 Initial Root Token: hvs.mSX4zcy6M7suKKnnSguIg5j6
 
-### Unseal Vault
+### Unseal Vault (We need to use three of these Unseal Keys to unseal Vault)
 $ vault operator unseal
 $ vault operator unseal
 $ vault operator unseal
