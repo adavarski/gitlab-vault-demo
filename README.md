@@ -121,7 +121,7 @@ qwerty123
 22
 ```
 
-## Create GitLab CI/CD pipeline 
+## GitLab CI/CD pipeline 
 
 ### Create Gitlab project and push [vault-demo-gitlab-repo](./vault-demo-gitlab-repo) folder to a GitLab repo
 
