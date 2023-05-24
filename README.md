@@ -57,12 +57,54 @@ Success! Enabled the kv secrets engine at: local/
 $ vault write local/esdata AWS_KEY="AKIAIOSFODNN7EXAMPLE" AWS_PASS="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" SAT_ID="22" ENCR_KEY="qwerty123"
 Success! Data written to: local/esdata
 $ vault secrets list -detailed
+$ vault kv get -field=AWS_KEY local/esdata
 ```
 
 ## Manual create simple docker container and test it 
 
 ```
 ### Build & Test docker container
+$ cat Dockerfile 
+FROM vault
+ENV VAULT_ADDR=https://192.168.1.99:8200
+ENV VAULT_TOKEN=hvs.mSX4zcy6M7suKKnnSguIg5j6
+ENV VAULT_SKIP_VERIFY=true
+ADD ./get.sh /
+ENTRYPOINT ["/bin/sh", "-c"]
+
+$ cat get.sh 
+#!/bin/sh
+
+case $1 in
+
+  AWS_KEY)
+    vault kv get -field=AWS_KEY local/esdata
+    ;;
+
+  AWS_PASS)
+    vault kv get -field=AWS_PASS local/esdata
+    ;;
+
+  ENCR_KEY)
+    vault kv get -field=ENCR_KEY local/esdata
+    ;;
+
+  SAT_ID)                               
+    vault kv get -field=SAT_ID local/esdata       
+    ;; 
+
+  ALL)
+    vault kv get -field=AWS_KEY local/esdata
+    echo ""
+    vault kv get -field=AWS_PASS local/esdata
+    echo ""
+    vault kv get -field=ENCR_KEY local/esdata
+    echo ""
+    vault kv get -field=SAT_ID local/esdata
+    echo ""
+    ;;
+esac
+
 $ docker build -t vault-get .
 $ docker run --rm  --name=dev-vault vault-get -c "/get.sh AWS_KEY"
 AKIAIOSFODNN7EXAMPLE
