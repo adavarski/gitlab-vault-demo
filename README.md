@@ -133,7 +133,7 @@ GitLab repo:
 
 <img src="./screenshots/gitlab-vault-demo-repo.png?raw=true" width="900">
 
-GitLab CI/CD pipilene variables (Keeping VAULT_TOKEN out of Git Repo): 
+GitLab CI/CD pipilene variables (Keeping VAULT_TOKEN out of Git Repo using GitLab CI/CD variables): 
 - VAULT_ADDR=https://192.168.1.99:8200 
 - VAULT_TOKEN=hvs.mSX4zcy6M7suKKnnSguIg5j6
 
