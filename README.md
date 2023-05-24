@@ -60,7 +60,7 @@ $ vault secrets list -detailed
 $ vault kv get -field=AWS_KEY local/esdata
 ```
 
-## Manual create simple docker container and test it 
+## Create simple docker container and test it 
 
 ```
 ### Build & Test docker container
