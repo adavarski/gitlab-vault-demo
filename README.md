@@ -106,15 +106,15 @@ case $1 in
 esac
 
 $ docker build -t vault-get .
-$ docker run --rm  --name=dev-vault vault-get -c "/get.sh AWS_KEY"
+$ docker run --rm  vault-get -c "/get.sh AWS_KEY"
 AKIAIOSFODNN7EXAMPLE
-$ docker run --rm  --name=dev-vault vault-get -c "/get.sh AWS_PASS"
+$ docker run --rm  vault-get -c "/get.sh AWS_PASS"
 wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-$ docker run --rm  --name=dev-vault vault-get -c "/get.sh ENCR_KEY"
+$ docker run --rm  vault-get -c "/get.sh ENCR_KEY"
 qwerty123d
-$ docker run --rm  --name=dev-vault vault-get -c "/get.sh SAT_ID"
+$ docker run --rm  vault-get -c "/get.sh SAT_ID"
 22
-$ docker run --rm  --name=dev-vault vault-get -c "/get.sh ALL"
+$ docker run --rm  vault-get -c "/get.sh ALL"
 AKIAIOSFODNN7EXAMPLE
 wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 qwerty123
